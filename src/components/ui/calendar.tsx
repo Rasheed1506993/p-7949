@@ -1,9 +1,20 @@
+
 import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
+import { type DateFormatter } from "react-day-picker";
+import { format as formatDate } from "date-fns";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+
+// تحديد منسّق التاريخ بشكل صريح
+const formatter: Record<string, DateFormatter> = {
+  monthLong: (date) => formatDate(date, "MMMM"),
+  yearNumeric: (date) => formatDate(date, "yyyy"),
+  dayLong: (date) => formatDate(date, "EEEE"),
+  dayShort: (date) => formatDate(date, "EEE"),
+};
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
@@ -51,6 +62,7 @@ function Calendar({
         day_hidden: "invisible",
         ...classNames,
       }}
+      formatters={formatter}
       components={{
         IconLeft: ({ ..._props }) => <ChevronLeft className="h-4 w-4" />,
         IconRight: ({ ..._props }) => <ChevronRight className="h-4 w-4" />,
