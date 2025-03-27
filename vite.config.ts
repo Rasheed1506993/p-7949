@@ -1,8 +1,7 @@
 
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";  // تغيير من plugin-react-swc إلى plugin-react
+import react from "@vitejs/plugin-react";  // استخدام plugin-react بدلاً من plugin-react-swc
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -11,10 +10,14 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
-    react(),  // استخدام plugin-react بدلاً من plugin-react-swc
-    mode === 'development' &&
-    componentTagger(),
-  ].filter(Boolean),
+    react({
+      babel: {
+        plugins: [],
+      },
+      // تعطيل استخدام SWC
+      jsxRuntime: "classic",
+    }),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
