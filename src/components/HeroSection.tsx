@@ -35,7 +35,7 @@ const HeroSection = () => {
   if (properties.length === 0) return null;
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative h-[60vh] md:h-[70vh] w-full overflow-hidden">
       {/* Background Slides */}
       {properties.map((property, index) => (
         <div
@@ -60,31 +60,31 @@ const HeroSection = () => {
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             {properties[currentSlide].title}
           </h1>
-          <p className="text-white/90 text-lg md:text-xl mb-8 max-w-2xl ml-auto">
-            {properties[currentSlide].description.substring(0, 120)}...
+          <p className="text-white/90 text-base md:text-lg mb-6 max-w-2xl ml-auto">
+            {properties[currentSlide].description.substring(0, 100)}...
           </p>
           <Link
             to={`/property/${properties[currentSlide].id}`}
-            className="inline-flex items-center bg-white text-primary px-6 py-3 rounded-full font-medium text-lg hover:bg-opacity-90 transition-all duration-300 group"
+            className="inline-flex items-center bg-white text-primary px-5 py-2 rounded-full font-medium text-base hover:bg-opacity-90 transition-all duration-300 group"
           >
             <span>عرض العقار</span>
-            <ChevronLeft className="w-5 h-5 mr-2 rtl:ml-2 rtl:mr-0 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
+            <ChevronLeft className="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
           </Link>
         </div>
       </div>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 rtl:space-x-reverse">
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 rtl:space-x-reverse">
         {properties.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
               currentSlide === index
-                ? "bg-white w-10"
+                ? "bg-white w-8"
                 : "bg-white/50 hover:bg-white/80"
             }`}
             aria-label={`Go to slide ${index + 1}`}
