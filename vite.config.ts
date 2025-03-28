@@ -20,7 +20,6 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // إضافة خيارات خاصة بالبناء للتأكد من توافقها مع Capacitor
   build: {
     outDir: 'dist',
     minify: true,
